@@ -1,6 +1,5 @@
 import http from "http";
 import EventEmitter from "events";
-import path from "path";
 
 export default class Application {
   constructor() {
@@ -16,12 +15,6 @@ export default class Application {
   listen(port, callback) {
     this.server.listen(port, callback);
   }
-
-  // endpoint = {
-  //     '/users': {
-  //         'GET': handler
-  //     }
-  //   }
 
   addRouter(router) {
     Object.keys(router.endpoints).forEach((path) => {

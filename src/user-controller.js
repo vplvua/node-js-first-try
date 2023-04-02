@@ -1,22 +1,19 @@
-const users = [
-  { id: 1, name: "Vasyl" },
-  { id: 2, name: "BigMack" },
-];
+import User from "./user-schema.js";
 
-const getUsers = (req, res) => {
+const getUsers = async (req, res) => {
+  let users;
+
   if (req.params.id) {
-    return res.send(
-      users.find((user) => user.id === parseFloat(req.params.id))
-    );
+    users = await User.findById(req.params.id);
+  } else {
+    users = await User.find();
   }
   res.send(users);
 };
 
-const createUser = (req, res) => {
-  console.log(req.body);
-  const user = req.body;
-  users.push(user);
-  res.send(users);
+const createUser = async (req, res) => {
+  const user = await User.create(req.body);
+  res.send(user);
 };
 
 export default {

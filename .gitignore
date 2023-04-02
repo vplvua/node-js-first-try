@@ -1,2 +1,4 @@
 /node_modules
 /lessons
+mongoose.js
+.env
